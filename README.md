@@ -30,16 +30,17 @@ Things you may want to cover:
 |email|string|null: false|
 |password|string|null: false|
 ### Association
-- has_many :users_groups
+- has_many :groups, through users_groups
 - has_many :messages
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false|
-|name|string|null: false|
+|name|string|null: false, unique: true|
 ### Association
-- has_many :users_groups
+- has_many :users, through users_groups
+- has_many :messages
 
 ## users_groupsテーブル
 |Column|Type|Options|
@@ -48,17 +49,17 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belongs_to :user
+- belongs_to :group
 
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false|
-|message|text|null: false|
+|body|text||
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 |picture|string||
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belongs_to :user
+- belongs_to :group
