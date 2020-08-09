@@ -38,14 +38,14 @@
     height: calc(100vh - 100px);
     background-color: #2f3e51;
     color: #ffffff;
-    .group{
+    .Group{
       height: 95px;
       padding: 0 20px;
       &__name{
         padding-top: 20px;
         font-size: 15px;
       }
-      &__last-message{
+      &__message{
         margin-top: 5px;
         font-size: 11px;
       }
