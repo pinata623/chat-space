@@ -1,10 +1,12 @@
 .chat-main
   .chat-main__message-top
     .group-name
-      all
+      = @group.name
       .members
-        Member：sampleppp take dads sample7 takkun
-    = link_to "#", class:'edit-btn' do
+        Member : 
+        - @group.users.each do |user|
+          = user.name
+    = link_to edit_group_path(@group.id), class:'edit-btn' do
       Edit
       -# %span<>
   .chat-main__body
@@ -23,11 +25,11 @@
         .chat-time
           2020年07月26日 13時27分
       .chat__body
-        testo
-  .chat-main__message-form
+        hello all
+  = form_with model: [@group, @message], html: {class: "chat-main__message-form"}, local: true do |f|
     .input-box
-      %input.input-box__text{name: "chat-input", placeholder: "type a message", type: "chat-input", value: ""}/
-      %label{class: "input-box__image"}
-        = icon('fas', 'image')
-        %input.input-box__image2{type: "file"}
+      = f.text_field :content, class: 'input-box__text', placeholder: 'type a message' 
+      = f.label :image, class: 'input-box__image' do
+        = icon('far', 'image')
+        = f.file_field :image, class: 'input-box__image2'
     %input.send-btn{name: "send", type: "submit", value: "send"}/
